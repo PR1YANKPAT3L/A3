@@ -124,14 +124,6 @@ public class SimpleParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_start; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).enterStart(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).exitStart(this);
-		}
 	}
 
 	public final StartContext start() throws RecognitionException {
@@ -142,8 +134,8 @@ public class SimpleParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 
-			            System.out.println(".class public input");
-			            System.out.println(".suprt java/lang/Object");
+			            System.out.println(".class public sample");
+			            System.out.println(".super java/lang/Object");
 			            System.out.println(".method public <init>()V");
 			            System.out.println("\taload_0");
 			            System.out.println("\tinvokenonvirtual java/lang/Object/<init>()V");
@@ -209,14 +201,6 @@ public class SimpleParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_statement; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).enterStatement(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).exitStatement(this);
-		}
 	}
 
 	public final StatementContext statement() throws RecognitionException {
@@ -280,14 +264,6 @@ public class SimpleParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_program; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).enterProgram(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).exitProgram(this);
-		}
 	}
 
 	public final ProgramContext program() throws RecognitionException {
@@ -327,14 +303,6 @@ public class SimpleParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_block; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).enterBlock(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).exitBlock(this);
-		}
 	}
 
 	public final BlockContext block() throws RecognitionException {
@@ -393,14 +361,6 @@ public class SimpleParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_printStmt; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).enterPrintStmt(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).exitPrintStmt(this);
-		}
 	}
 
 	public final PrintStmtContext printStmt() throws RecognitionException {
@@ -455,14 +415,6 @@ public class SimpleParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_assignStmt; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).enterAssignStmt(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).exitAssignStmt(this);
-		}
 	}
 
 	public final AssignStmtContext assignStmt() throws RecognitionException {
@@ -502,7 +454,7 @@ public class SimpleParser extends Parser {
 				((AssignStmtContext)_localctx).expression = expression();
 
 				            ((AssignStmtContext)_localctx).s =  "\t" + ((AssignStmtContext)_localctx).expression.s + "\n";
-				            _localctx.s += "\tistore " + get(((AssignStmtContext)_localctx).ID.getText()) + "";
+				            _localctx.s += "\tistore " + get(((AssignStmtContext)_localctx).ID.getText()) + "\n";
 				        
 				}
 				break;
@@ -533,14 +485,6 @@ public class SimpleParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_repeatStmt; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).enterRepeatStmt(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).exitRepeatStmt(this);
-		}
 	}
 
 	public final RepeatStmtContext repeatStmt() throws RecognitionException {
@@ -563,14 +507,12 @@ public class SimpleParser extends Parser {
 			            ((RepeatStmtContext)_localctx).s =  "\tiload 0\n";
 			            _localctx.s += "\tistore " + count + "\n";
 			            _localctx.s += "\t" + ((RepeatStmtContext)_localctx).expression.s + "\n";
-			            count++;
-			            _localctx.s += "\tistore " + count + "\n";
+			            _localctx.s += "\tistore " + (count++) + "\n";
 			            _localctx.s += "\tloop_" + loop + ":\n";
 			            _localctx.s += "\t" + ((RepeatStmtContext)_localctx).block.s + "\n";
 			            _localctx.s += "\tiinc " + count + " 1\n";
 			            _localctx.s += "\tiload " + count + "\n";
-			            count++;
-			            _localctx.s += "\tiload " + count + "\n";
+			            _localctx.s += "\tiload " + (count++) + "\n";
 			            _localctx.s += "\tif_icmplt loop_" + loop;
 			            loop++;
 			            count = count + 2;
@@ -601,14 +543,6 @@ public class SimpleParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_exprList; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).enterExprList(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).exitExprList(this);
-		}
 	}
 
 	public final ExprListContext exprList() throws RecognitionException {
@@ -672,14 +606,6 @@ public class SimpleParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_expression; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).enterExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).exitExpression(this);
-		}
 	}
 
 	public final ExpressionContext expression() throws RecognitionException {
@@ -805,14 +731,6 @@ public class SimpleParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_operation; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).enterOperation(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).exitOperation(this);
-		}
 	}
 
 	public final OperationContext operation() throws RecognitionException {
@@ -849,14 +767,6 @@ public class SimpleParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_var; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).enterVar(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SimpleListener ) ((SimpleListener)listener).exitVar(this);
-		}
 	}
 
 	public final VarContext var() throws RecognitionException {

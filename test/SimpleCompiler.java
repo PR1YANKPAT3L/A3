@@ -6,8 +6,7 @@ import java.io.*;
  */
 public class SimpleCompiler {
     public static void main(String[] args) throws Exception {
-        System.out.println(args.length);
-        if(args.length != 3) {
+	if(args.length != 1) {
             System.err.println("Error: Invalid use of command line argument, expected file name");
             System.exit(0);
         }

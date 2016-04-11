@@ -29,8 +29,8 @@ grammar Simple;
 start
     :
         {
-            System.out.println(".class public input");
-            System.out.println(".suprt java/lang/Object");
+            System.out.println(".class public sample");
+            System.out.println(".super java/lang/Object");
             System.out.println(".method public <init>()V");
             System.out.println("\taload_0");
             System.out.println("\tinvokenonvirtual java/lang/Object/<init>()V");
@@ -143,7 +143,7 @@ assignStmt returns [String s]
         'let' ID '=' expression
         {
             $s = "\t" + $expression.s + "\n";
-            $s += "\tistore " + get($ID.getText()) + "";
+            $s += "\tistore " + get($ID.getText()) + "\n";
         }
     ;
 
@@ -159,14 +159,12 @@ repeatStmt returns [String s]
             $s = "\tiload 0\n";
             $s += "\tistore " + count + "\n";
             $s += "\t" + $expression.s + "\n";
-            count++;
-            $s += "\tistore " + count + "\n";
+            $s += "\tistore " + (count++) + "\n";
             $s += "\tloop_" + loop + ":\n";
             $s += "\t" + $block.s + "\n";
             $s += "\tiinc " + count + " 1\n";
             $s += "\tiload " + count + "\n";
-            count++;
-            $s += "\tiload " + count + "\n";
+            $s += "\tiload " + (count++) + "\n";
             $s += "\tif_icmplt loop_" + loop;
             loop++;
             count = count + 2;
